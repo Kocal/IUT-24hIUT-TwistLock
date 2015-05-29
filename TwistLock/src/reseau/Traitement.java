@@ -13,9 +13,9 @@ public class Traitement {
     String message = null;
     String code = null;
 
-    private IA ia = null;
+    private static IA ia = null;
 
-    private tablier.Tablier tablier;
+    private static tablier.Tablier tablier;
 
     public Traitement(String messageRecu) {
         message = messageRecu;
@@ -44,6 +44,7 @@ public class Traitement {
                 System.out.println(msg);
 
                 this.tablier = new Tablier(msg);
+                ia.t = tablier;
 
                 System.out.println(this.tablier);
 

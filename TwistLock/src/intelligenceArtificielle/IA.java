@@ -28,14 +28,12 @@ public class IA {
     public void choixPlacer() {
 
         int nb = 0, l = 0, h = 0, nbCoin = 0;
-        getBetterCoin(nb, l, h, nbCoin);
+        getBetterCoin(l, h, nbCoin);
         boolean[] bool = getCoinPossible(l, h);
 
     }
 
-    public void getBetterCoin(int nb, int l, int h, int nbC) {
-
-        int nbConteneur = 0;
+    public void getBetterCoin(int l, int h, int nbC) {
         int conteneurL = 0;
         int conteneurH = 0;
         int nombreCoin = 0;
@@ -60,7 +58,6 @@ public class IA {
                 }
             }
         }
-        nb = nbConteneur;
         l = conteneurL;
         h = conteneurH;
         nbC = nombreCoin;

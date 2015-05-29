@@ -20,22 +20,46 @@ public class Tablier {
     
     private Conteneur[][] grille;
     
+    /**
+     * Instancie un nouveau Tablier de dimension "hauteur" * "largeur"
+     * @param hauteur Hauteur de la grille
+     * @param largeur Largeur de la grille
+     */
     public Tablier(int hauteur, int largeur) {
         this.hauteur = hauteur;
         this.largeur = largeur;
-        
-        
-        this.initGrille();
+        this.initGrille(hauteur, largeur);
     }
     
-    private void initGrille() {
-        this.grille = new Conteneur[this.hauteur][this.largeur];
+    /**
+     * Instancie un nouveau Tablier en fonction de "grilleChaine"
+     * @param grilleChaine 
+     */
+    public Tablier(String grilleChaine) {
+        this.initGrille(grilleChaine);
+    }
+    
+    /**
+     * Initialise une grille de dimension "hauteur" * "largeur"
+     * @param hauteur Hauteur de la grille
+     * @param largeur Largeur de la grille
+     */
+    private void initGrille(int hauteur, int largeur) {
+        this.grille = new Conteneur[hauteur][largeur];
         
-        for(int i = 0; i < this.hauteur; i++) {
-            for(int j = 0; j < this.largeur; j++) {
+        for(int i = 0; i < hauteur; i++) {
+            for(int j = 0; j < largeur; j++) {
                 this.grille[i][j] = new Conteneur(i, j, (int) (Math.random() * 49 + 5));
             }
         }
+    }
+    
+    /**
+     * Initialise une grille de dimension "hauteur" * "largeur"
+     * @param grilleChaine 
+     */
+    private void initGrille(String grilleChaine) {
+        
     }
     
     /**

@@ -21,6 +21,7 @@ public class Emission {
         try {
             this.out = new PrintWriter(socket.getOutputStream());
         } catch (IOException ex) {
+            System.err.println("Erreur : Recuperation du flux de sortie de la socket impossible.");
             Logger.getLogger(Emission.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

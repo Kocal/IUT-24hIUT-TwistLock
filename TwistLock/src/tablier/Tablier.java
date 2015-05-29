@@ -89,15 +89,17 @@ public class Tablier {
         this.coins = new Coin[hauteur + 1][largeur + 1];
 
         for (int j = 0; j <= grid_lines.length; j++) {
+            
+            if(j != grid_lines.length) {
+                String[] grid_column = grid_lines[j].split(":");
 
-            String[] grid_column = grid_lines[j].split(":");
+                for (int i = 0; i <= grid_column.length; i++) {
+                    if(j != grid_lines.length && i != grid_column.length) {
+                        this.grille[j][i] = new Conteneur(j, i, Integer.valueOf(grid_column[i]));
+                    }
 
-            for (int i = 0; i <= grid_column.length; i++) {
-                if(j != grid_lines.length && i != grid_column.length) {
-                    this.grille[j][i] = new Conteneur(j, i, Integer.valueOf(grid_column[i]));
+                    this.coins[j][i] = new Coin();
                 }
-
-                this.coins[j][i] = new Coin();
             }
         }
 

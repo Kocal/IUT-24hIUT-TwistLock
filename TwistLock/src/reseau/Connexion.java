@@ -29,6 +29,16 @@ public class Connexion {
         try {
             System.out.println("Connexion au serveur (" + adresseIp + ":" + numeroPort + ") en cours...");
             socket = new Socket(adresseIp, Integer.parseInt(numeroPort));
+            System.out.println("Connexion réussie.");
+
+            Emission emission = new Emission(socket);
+            emission.emettre("Chicken Brothers");
+
+            Thread threadReception = new Thread(new Reception(socket));
+            threadReception.start();
+
+            while (true);
+
         } catch (UnknownHostException ex) {
             System.err.println("Erreur : impossible de se connecter au serveur d'adresse " + adresseIp + ".");
             Logger.getLogger(Connexion.class.getName()).log(Level.SEVERE, null, ex);
@@ -36,8 +46,5 @@ public class Connexion {
             System.err.println("Erreur : aucun serveur à l'écoute du port " + numeroPort + ".");
             Logger.getLogger(Connexion.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-        // Thread
-        // Réception
     }
 }

@@ -5,10 +5,12 @@
  */
 package intelligenceArtificielle;
 
+import static intelligenceArtificielle.EtatPartie.Inscription;
 import java.util.ArrayList;
 import tablier.Coin;
 import tablier.Conteneur;
 import tablier.Tablier;
+import twistlock.Constante.couleur;
 
 /**
  *
@@ -17,6 +19,9 @@ import tablier.Tablier;
 public class IA {
 
     private Tablier t;
+
+    public couleur col;
+
     /*
      10- ah vous de jouer (Vert)
      20: coup adversaire: 9B1
@@ -24,37 +29,59 @@ public class IA {
     
      //ici chercher coin dont somme conteneur + élevé (voir où est adverse pour maximiser point
      */
+    private EtatPartie state;
+
+    public IA() {
+
+        state = Inscription;
+
+    }
+
+    public void incomingMessage(String message) {
+
+        if (message.contains("Bonjour")) {
+            //détéction des couleurs de joueur
+        } else if (message.contains("la partie va commencer")) {
+            //génération grille/tablier
+        } else if (message.contains("A vous de jouer")) {
+            //mise à jour grille avec le coup jouer
+        } else if (message.contains("coup joué illégal")) {
+            //jamais ici !
+        } else if (message.contains("coup adversaire illégal")) {
+            //
+        } else if (message.contains("Vous ne pouvez plus jouer")) {
+            //
+        } else if (message.contains("Partie Terminée, vous avez")) {
+            //gagner, perdu ?
+            //fermeture connexion
+        }
+
+    }
 
     public void choixPlacer() {
 
         int nb = 0, l = 0, h = 0, nbCoin = 0;
-        getBetterCoin(nb, l, h, nbCoin);
+        getBetterCoin(l, h, nbCoin);
         boolean[] bool = getCoinPossible(l, h);
 
     }
 
-    public void getBetterCoin(int nb, int l, int h, int nbC) {
-
-        int nbConteneur = 0;
+    public void getBetterCoin(int l, int h, int nbC) {
         int conteneurL = 0;
         int conteneurH = 0;
         int nombreCoin = 0;
         ArrayList<Conteneur> cont;
-        Coin c = null;
+        Coin c;
         int sum;
         for (int i = 0; i < t.getHauteur(); i++) {
             for (int j = 0; j < t.getLargeur(); j++) {
                 for (int k = 0; k < 4; k++) {
-                    //c = t.getConteneur(i, j).getCase(k);
+                    c = t.getConteneur(i, j).getCoin(i);
                     sum = 0;
-                    if (true) { // !c.isPris();
+                    if (!c.isTaken()) {
 
-                        
-                        /*for (int m = 0; m < 4; m++) {
-                            // sum+= contenuconteneur.coin.
-                        }*/
                         cont = c.getConteneurs();
-                        for(Conteneur cat:cont ){
+                        for (Conteneur cat : cont) {
                             sum += cat.valeur;
                         }
                         if (sum > nombreCoin) {
@@ -64,9 +91,9 @@ public class IA {
                 }
             }
         }
-        nb = nbConteneur;
         l = conteneurL;
         h = conteneurH;
+        nbC = nombreCoin;
     }
 
     // index correspond au type de message (20, 21, 22, 50, 88)

@@ -7,47 +7,41 @@ import java.io.InputStreamReader;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-
 /**
  *
  * @author Arnaud
  */
-
-public class Reception implements Runnable{
+public class Reception implements Runnable {
 
     private Socket socket = null;
     private BufferedReader in;
     private String message = null;
-    private String trame = null;
-	
-    public Reception(Socket socket){
-        
+
+    public Reception(Socket socket) {
         this.socket = socket;
-        
+
         try {
             this.in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         } catch (IOException ex) {
+            System.err.println("Erreur : Recuperation du flux d'entrée de la socket impossible.");
             Logger.getLogger(Reception.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-	
+
     @Override
     public void run() {
-
-        while(true){
+        while (true) {
             try {
-
                 message = in.readLine();
-                System.out.println("Le serveur vous dit :" + message);
-
+                System.out.println("Reception : " + message);
             } catch (IOException e) {
-
+                System.err.println("Erreur : Recuperation de lecture du message de la socket impossible.");
                 e.printStackTrace();
             }
         }
     }
-    
-    public String getTrame() {
-        return trame;
+
+    public String getMessage() {
+        return message;
     }
 }

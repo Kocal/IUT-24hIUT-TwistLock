@@ -1,6 +1,7 @@
 package tablier;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import twistlock.Constante;
 import twistlock.Constante.Couleur;
 
@@ -96,22 +97,21 @@ public class Tablier {
 
         //rawMap = "MAP=1:2:3:4:5:6:7:8:9:10|11:12:13:14:15:16:17:18:19:20|21:22:23:24:25:26:27:28:29:30|";
         String[] grid_lines = rawMap.substring(4).split("\\|");
-
-        this.hauteur = grid_lines.length;
+        
+        this.hauteur = grid_lines.length - 1;
         this.largeur = grid_lines[0].split(":").length;
 
         this.grille = new Conteneur[hauteur][largeur];
         this.coins = new Coin[hauteur + 1][largeur + 1];
 
-        for (int j = 0; j <= grid_lines.length; j++) {
-            
-            if(j != grid_lines.length) {
-                String[] grid_column = grid_lines[j].split(":");
+        for (int j = 0; j < grid_lines.length - 1; j++) {
+             
+            String[] grid_column = grid_lines[j].split(":");
 
-                for (int i = 0; i <= grid_column.length; i++) {
-                    if(j != grid_lines.length && i != grid_column.length) {
-                        this.grille[j][i] = new Conteneur(j, i, Integer.valueOf(grid_column[i]));
-                    }
+            for (int i = 0; i < grid_column.length; i++) {
+                System.out.println("Grille["+j+"]["+i+"] = " + grid_column[i]);
+                if(!grid_column[i].isEmpty()) {
+                    this.grille[j][i] = new Conteneur(j, i, Integer.valueOf(grid_column[i]));
                 }
             }
         }

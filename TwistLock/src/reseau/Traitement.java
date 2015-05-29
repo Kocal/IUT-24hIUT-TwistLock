@@ -77,7 +77,16 @@ public class Traitement {
                 // Attente du prochain message qui commence par MAP
                 // if (MAP)
                 // Appeller la fonction d'initialisation de la map
-                this.tablier = new Tablier(messageRecu);
+                String msg = "M" + messageRecu.split("M")[1];
+                msg = msg.substring(0, msg.length() - 1);
+                
+                System.out.println(msg);
+                
+                this.tablier = new Tablier(msg);
+                
+                System.out.println(this.tablier);
+                System.out.println(this.tablier.getHauteur());
+                System.out.println(this.tablier.getLargeur());
 
                 break;
 

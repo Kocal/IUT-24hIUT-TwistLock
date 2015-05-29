@@ -228,6 +228,7 @@ public class IA {
                         p.colonne = j;
                     }
                     coins[i][j].setTaken(Couleur.INNOCUPE);
+           
                 }
             }
         }

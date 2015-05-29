@@ -113,7 +113,7 @@ public class Tablier {
     private void init(String rawMap) {
 
         //rawMap = "MAP=1:2:3:4:5:6:7:8:9:10|11:12:13:14:15:16:17:18:19:20|21:22:23:24:25:26:27:28:29:30|";
-        rawMap = purger(rawMap);
+//        rawMap = purger(rawMap);
         String[] grid_lines = rawMap.substring(4).split("\\|");
         
         this.hauteur = grid_lines.length - 1;
@@ -127,7 +127,7 @@ public class Tablier {
             String[] grid_column = grid_lines[j].split(":");
 
             for (int i = 0; i < grid_column.length; i++) {
-                System.out.println("Grille["+j+"]["+i+"] = " + grid_column[i]);
+//                System.out.println("Grille["+j+"]["+i+"] = " + grid_column[i]);
                 if(!grid_column[i].isEmpty()) {
                     this.grille[j][i] = new Conteneur(j, i, Integer.valueOf(grid_column[i]));
                 }

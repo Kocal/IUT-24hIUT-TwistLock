@@ -85,8 +85,6 @@ public class Traitement {
                 this.tablier = new Tablier(msg);
                 
                 System.out.println(this.tablier);
-                System.out.println(this.tablier.getHauteur());
-                System.out.println(this.tablier.getLargeur());
 
                 break;
 

@@ -81,7 +81,6 @@ public class Coin {
     public void setTaken(Couleur col) {
         this.col = col;
         
-        System.out.println("Size conteneurs : " + this.conteneurs.size());
         for(Conteneur conteneur : this.conteneurs) {
 //            System.out.println(conteneur.valeur);
 //            System.out.println(conteneur.isTaken());

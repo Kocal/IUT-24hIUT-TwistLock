@@ -1,5 +1,6 @@
 package twistlock;
 
+import intelligenceArtificielle.IA;
 import reseau.Connexion;
 
 /**
@@ -23,6 +24,9 @@ public class TwistLock {
 
         System.out.println(t);
 
+        IA ia = new IA(Constante.Couleur.VERT);
+        ia.t = t;
+        System.out.println(ia.getMeilleurCoin().getChaine(t));
         Connexion connexion = new Connexion();
     }
 }

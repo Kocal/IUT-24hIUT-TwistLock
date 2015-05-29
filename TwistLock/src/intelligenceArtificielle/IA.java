@@ -18,7 +18,7 @@ import twistlock.Constante.Couleur;
  */
 public class IA {
 
-    private Tablier t;
+    public Tablier t;
 
     public Couleur col;
 

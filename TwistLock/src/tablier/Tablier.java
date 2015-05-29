@@ -95,12 +95,19 @@ public class Tablier {
      */
     public String purger(String rawMap)
     {
-        rawMap = rawMap.split("\n")[1];
-        String[] chaines = rawMap.split("|");
-        String chaine = chaines[chaines.length-1];
-        rawMap = rawMap.replaceAll(chaine, "");
-        rawMap = rawMap.replaceAll(" ", "");
-        return rawMap;
+        try
+        {
+            rawMap = rawMap.split("\n")[1];
+            String[] chaines = rawMap.split("|");
+            String chaine = chaines[chaines.length-1];
+            rawMap = rawMap.replaceAll(chaine, "");
+            rawMap = rawMap.replaceAll(" ", "");
+            return rawMap;
+        }
+        catch(Exception ex)
+        {
+            return rawMap;
+        }
     }
     
     private void init(String rawMap) {

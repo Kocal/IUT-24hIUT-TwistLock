@@ -15,5 +15,7 @@ public class TwistLock {
         System.out.println(t);
         System.out.println(t.getConteneur(0, 1).valeur);
         System.out.println(t.getConteneur(1, 0).valeur);
+
+        Connexion connexion = new Connexion();
     }
 }

@@ -36,9 +36,6 @@ public class Connexion {
 
             Thread threadReception = new Thread(new Reception(socket));
             threadReception.start();
-
-            while (true);
-
         } catch (UnknownHostException ex) {
             System.err.println("Erreur : impossible de se connecter au serveur d'adresse " + adresseIp + ".");
             Logger.getLogger(Connexion.class.getName()).log(Level.SEVERE, null, ex);

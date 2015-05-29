@@ -30,14 +30,16 @@ public class Reception implements Runnable {
 
     @Override
     public void run() {
-        while (true) {
-            try {
-                message = in.readLine();
+        message = null;
+
+        try {
+            while (!Thread.currentThread().isInterrupted() && (message = in.readLine()) != null) {
                 System.out.println("Reception : " + message);
-            } catch (IOException e) {
-                System.err.println("Erreur : Recuperation de lecture du message de la socket impossible.");
-                e.printStackTrace();
+                Traitement traitement = new Traitement(message);
             }
+        } catch (IOException ex) {
+            System.err.println("Erreur : impossible de recevoir des message...");
+            Logger.getLogger(Reception.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

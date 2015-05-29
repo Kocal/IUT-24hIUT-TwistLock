@@ -13,7 +13,7 @@ public class Traitement {
     String message = null;
     String code = null;
 
-    private IA ia;
+    private IA ia = null;
 
     private tablier.Tablier tablier;
 
@@ -27,50 +27,11 @@ public class Traitement {
 
         switch (code) {
             case "1-":
-
-                team = messageRecu.substring(10);
-
-                if (team == "Chicken Brothers") {
-
-                    if (messageRecu.contains("VERT")) {
-                        ia = new IA(Couleur.VERT);
-                    }
-
-                    if (messageRecu.contains("ROUGE")) {
-                        ia = new IA(Couleur.ROUGE);
-                    }
-
-                }
-                //System.out.println(">>> " + );
-
-                // "Bonjour équipe 1..."
-                // Appeller fonction qui définie la couleur avec en paramètre ROUGE
-                /*
-
-                 NOUS = ChickenBrothers tmtc
-
-                 if(équipe1 == NOUS)
-                 IA ia = new IA(ROUGE);
-                 */
+                ia = new IA(Couleur.ROUGE);
                 break;
 
             case "2-":
-
-                team = messageRecu.substring(10);
-
-                if (team == "Chicken Brothers") {
-
-                    if (messageRecu.contains("VERT")) {
-                        ia = new IA(Couleur.VERT);
-                    }
-
-                    if (messageRecu.contains("ROUGE")) {
-                        ia = new IA(Couleur.ROUGE);
-                    }
-
-                }
-
-                //ia.setEtatPartie(EtatPartie.BATAILLE);
+                ia = new IA(Couleur.VERT);
                 break;
 
             case "01":
@@ -79,11 +40,11 @@ public class Traitement {
                 // Appeller la fonction d'initialisation de la map
                 String msg = "M" + messageRecu.split("M")[1];
                 msg = msg.substring(0, msg.length() - 1);
-                
+
                 System.out.println(msg);
-                
+
                 this.tablier = new Tablier(msg);
-                
+
                 System.out.println(this.tablier);
 
                 break;

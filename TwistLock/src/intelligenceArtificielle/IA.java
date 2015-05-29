@@ -5,6 +5,7 @@
  */
 package intelligenceArtificielle;
 
+import static intelligenceArtificielle.EtatPartie.Inscription;
 import java.util.ArrayList;
 import tablier.Coin;
 import tablier.Conteneur;
@@ -18,9 +19,9 @@ import twistlock.Constante.couleur;
 public class IA {
 
     private Tablier t;
-    
+
     public couleur col;
-            
+
     /*
      10- ah vous de jouer (Vert)
      20: coup adversaire: 9B1
@@ -28,6 +29,34 @@ public class IA {
     
      //ici chercher coin dont somme conteneur + élevé (voir où est adverse pour maximiser point
      */
+    private EtatPartie state;
+
+    public IA() {
+
+        state = Inscription;
+
+    }
+
+    public void incomingMessage(String message) {
+
+        if (message.contains("Bonjour")) {
+            //détéction des couleurs de joueur
+        } else if (message.contains("la partie va commencer")) {
+            //génération grille/tablier
+        } else if (message.contains("A vous de jouer")) {
+            //mise à jour grille avec le coup jouer
+        } else if (message.contains("coup joué illégal")) {
+            //jamais ici !
+        } else if (message.contains("coup adversaire illégal")) {
+            //
+        } else if (message.contains("Vous ne pouvez plus jouer")) {
+            //
+        } else if (message.contains("Partie Terminée, vous avez")) {
+            //gagner, perdu ?
+            //fermeture connexion
+        }
+
+    }
 
     public void choixPlacer() {
 
@@ -52,7 +81,7 @@ public class IA {
                     if (!c.isTaken()) {
 
                         cont = c.getConteneurs();
-                        for(Conteneur cat:cont ){
+                        for (Conteneur cat : cont) {
                             sum += cat.valeur;
                         }
                         if (sum > nombreCoin) {

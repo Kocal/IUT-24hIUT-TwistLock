@@ -9,6 +9,13 @@ public class Conteneur {
     public int colonne;
     public int valeur;
     
+    public Conteneur(int ligne, int colonne, int valeur)
+    {
+        this.ligne=ligne;
+        this.colonne=colonne;
+        this.valeur=valeur;
+    }
+    
     public String getColonneAfficher(){
         return Character.toString((char)('A'+colonne));
     }

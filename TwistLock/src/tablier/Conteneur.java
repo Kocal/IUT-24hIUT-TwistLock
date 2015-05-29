@@ -1,6 +1,8 @@
 package tablier;
 
 import java.util.ArrayList;
+import twistlock.Constante;
+import twistlock.Constante.Couleur;
 
 /**
  *
@@ -12,6 +14,8 @@ public class Conteneur {
     public int colonne;
     public int valeur;
     
+    private Couleur coul;
+    
     private ArrayList<Coin> coins;
 
     public Conteneur(int ligne, int colonne, int valeur) {
@@ -19,6 +23,7 @@ public class Conteneur {
         this.colonne = colonne;
         this.valeur = valeur;
         this.coins = new ArrayList<>(4);
+        this.coul = Couleur.INNOCUPE;
     }
 
     public String getColonneAfficher() {
@@ -90,5 +95,29 @@ public class Conteneur {
      */
     public ArrayList<Coin> getCoins() {
         return this.coins;
+    }
+    
+    /**
+     * Définit la couleur du Conteneur
+     * @param coul 
+     */
+    public void setColor(Couleur coul) {
+        this.coul = coul;
+    }
+    
+    /**
+     * Retourne la couleur du Conteneur
+     * @return 
+     */
+    public Couleur getColor() {
+        return this.coul;
+    }
+    
+    /**
+     * Renvoie true si le Conteneur est prit.
+     * @return 
+     */
+    public boolean isTaken() {
+        return this.coul != Couleur.INNOCUPE;
     }
 }

@@ -15,6 +15,10 @@ public class Coin {
      */
     private ArrayList<Conteneur> conteneurs;
 
+    public static int INNOCUPE = 0;
+    public static int VERT = 1;
+    public static int ROUGE = 2;
+
     // Vrai = Coin occupé, Faux = Coin non-occupé
     private Couleur col;
 
@@ -71,6 +75,16 @@ public class Coin {
 
     public void setTaken(Couleur col) {
         this.col = col;
+        
+        System.out.println("Size conteneurs : " + this.conteneurs.size());
+        for(Conteneur conteneur : this.conteneurs) {
+//            System.out.println(conteneur.valeur);
+//            System.out.println(conteneur.isTaken());
+            
+            if(!conteneur.isTaken()) {
+                conteneur.setColor(this.col);
+            }
+        }
     }
 
     public boolean isTaken() {

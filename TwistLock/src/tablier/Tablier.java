@@ -51,6 +51,7 @@ public class Tablier {
     
     public Tablier(Tablier t){
         this.hauteur = t.hauteur;
+        
         this.largeur = t.largeur;
         this.init(hauteur, largeur);
         for(int i = 0; i < largeur; i ++){

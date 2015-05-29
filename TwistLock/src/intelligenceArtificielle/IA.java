@@ -50,7 +50,7 @@ public class IA {
     }
 
     public void meilleurMethode(){
-        
+        ///
         
         methodeAttaque();
         MethodeDefense();

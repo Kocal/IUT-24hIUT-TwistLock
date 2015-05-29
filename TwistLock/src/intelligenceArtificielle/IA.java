@@ -168,6 +168,10 @@ public class IA {
     public void setEtatPartie(EtatPartie s) {
         this.state = s;
     }
+    
+    public EtatPartie getEtatPartie(){
+        return this.state;
+    }
 
     public int getTotalPointEnnemi() {
         int total = 0;

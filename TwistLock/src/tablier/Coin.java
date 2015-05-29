@@ -14,18 +14,23 @@ public class Coin {
      */
     private ArrayList<Conteneur> conteneurs;
 
+    public static int INNOCUPE = 0;
+    public static int VERT = 1;
+    public static int ROUGE = 2;
+
     // Vrai = Coin occupé, Faux = Coin non-occupé
-    private boolean taken;
+    private int taken;
 
     /**
      * Initialise un nouveau Coin
      */
     public Coin() {
         this.conteneurs = new ArrayList<>();
-        this.taken = false;
+        this.taken = INNOCUPE;
     }
 
-    public Coin(boolean taken) {
+    public Coin(int taken) {
+        this.conteneurs = new ArrayList<>();
         this.taken = taken;
     }
 
@@ -64,11 +69,15 @@ public class Coin {
         return this.conteneurs;
     }
 
-    public void setTaken(boolean taken) {
+    public void setTaken(int taken) {
         this.taken = taken;
     }
 
     public boolean isTaken() {
-        return taken;
+        return taken != INNOCUPE;
+    }
+
+    public int getTaken() {
+        return this.taken;
     }
 }

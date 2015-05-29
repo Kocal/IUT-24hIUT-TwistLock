@@ -44,4 +44,11 @@ public class Coin {
             return -1;
         }
     }
+    
+    /**
+     * @return Les références de Conteneurs associés au Coin
+     */
+    public ArrayList<Conteneur> getConteneurs() {
+        return this.conteneurs;
+    }
 }

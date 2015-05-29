@@ -5,6 +5,9 @@
  */
 package intelligenceArtificielle;
 
+import java.util.ArrayList;
+import tablier.Coin;
+import tablier.Conteneur;
 import tablier.Tablier;
 
 /**
@@ -19,32 +22,45 @@ public class IA {
      20: coup adversaire: 9B1
     
     
-    //ici chercher coin dont somme conteneur + élevé (voir où est adverse pour maximiser point
+     //ici chercher coin dont somme conteneur + élevé (voir où est adverse pour maximiser point
      */
-    
 
-    public void choixPlacer(){
-        
-        int nb = 0, l = 0, h = 0, nbCoin =0;
+    public void choixPlacer() {
+
+        int nb = 0, l = 0, h = 0, nbCoin = 0;
         getBetterCoin(nb, l, h, nbCoin);
         boolean[] bool = getCoinPossible(l, h);
-        
-        
-        
-        
+
     }
-    public void getBetterCoin(int nb, int l, int h, int nbC){
-        
+
+    public void getBetterCoin(int nb, int l, int h, int nbC) {
+
         int nbConteneur = 0;
         int conteneurL = 0;
         int conteneurH = 0;
-        int nombreCoin;
+        int nombreCoin = 0;
+        ArrayList<Conteneur> cont;
+        Coin c = null;
+        int sum;
         for (int i = 0; i < t.getHauteur(); i++) {
             for (int j = 0; j < t.getLargeur(); j++) {
-                if (true) { // contenu conteneur > nbConteneur
-                    nbConteneur = 1; //contenu conteneur
-                    conteneurL = j;
-                    conteneurH = i;
+                for (int k = 0; k < 4; k++) {
+                    //c = t.getConteneur(i, j).getCase(k);
+                    sum = 0;
+                    if (true) { // !c.isPris();
+
+                        
+                        /*for (int m = 0; m < 4; m++) {
+                            // sum+= contenuconteneur.coin.
+                        }*/
+                        cont = c.getConteneurs();
+                        for(Conteneur cat:cont ){
+                            sum += cat.valeur;
+                        }
+                        if (sum > nombreCoin) {
+                            nombreCoin = sum;
+                        }
+                    }
                 }
             }
         }
@@ -52,6 +68,7 @@ public class IA {
         l = conteneurL;
         h = conteneurH;
     }
+
     // index correspond au type de message (20, 21, 22, 50, 88)
     public void getBetterConteneur(int nb, int l, int h) {
 
@@ -71,16 +88,16 @@ public class IA {
         l = conteneurL;
         h = conteneurH;
     }
-    
-    public boolean[] getCoinPossible(int l, int h){
-        
+
+    public boolean[] getCoinPossible(int l, int h) {
+
         boolean b[] = new boolean[4];
-        
+
         b[0] = true;
         b[1] = true;
         b[2] = true;
         b[3] = true;
-        
+
         return b;
     }
 

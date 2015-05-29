@@ -109,4 +109,19 @@ public class Tablier {
         
         return s;
     }
+    
+    /**
+     * Retourne le Conteneur à la ligne "ligne" et à la colonne "colonne"
+     * @param ligne
+     * @param colonne
+     * @return Conteneur
+     */
+    public Conteneur getConteneur(int ligne, int colonne) {
+        if(ligne < 0 || ligne >= this.hauteur
+        || colonne < 0 || colonne >= this.largeur) {
+            return null;
+        }
+        
+        return this.grille[ligne][colonne];
+    }
 }

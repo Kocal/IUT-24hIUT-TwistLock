@@ -97,9 +97,13 @@ public class Tablier {
                     if(j != grid_lines.length && i != grid_column.length) {
                         this.grille[j][i] = new Conteneur(j, i, Integer.valueOf(grid_column[i]));
                     }
-
-                    this.coins[j][i] = new Coin();
                 }
+            }
+        }
+        
+        for (int i = 0; i <= hauteur; i++) {
+            for (int j = 0; j <= largeur; j++) {
+                this.coins[i][j] = new Coin();
             }
         }
 

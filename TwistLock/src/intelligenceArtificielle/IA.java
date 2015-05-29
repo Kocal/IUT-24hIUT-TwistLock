@@ -22,6 +22,10 @@ public class IA {
 
     public Couleur col;
 
+    public int pointA, pointD;
+    public int l, h, c;
+    public int lA, hA, cA;
+    public int lD, hD, cD;
     /*
      10- ah vous de jouer (Vert)
      20: coup adversaire: 9B1
@@ -45,6 +49,36 @@ public class IA {
 
     }
 
+    public void meilleurMethode(){
+        
+        
+        methodeAttaque();
+        MethodeDefense();
+        
+        if(pointA > pointD){
+            l = lA;
+            h = hA;
+            c = cA;
+        }
+        else{
+            l = lD;
+            h = hD;
+            c = cD;
+        }
+            
+    } 
+    
+    public void methodeAttaque(){
+        
+        //penser modiffier PointA
+    }
+    
+            
+    public void MethodeDefense(){
+        
+        //penser modiffier PointD
+    }
+    
     public void getBetterCoin(int l, int h, int nbC) {
         int conteneurL = 0;
         int conteneurH = 0;

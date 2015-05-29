@@ -37,11 +37,14 @@ public class IA {
      */
     private EtatPartie state;
 
-    public IA(Couleur col, Tablier t) {
+    public IA(Couleur col) {
 
         state = Inscription;
         this.col = col;
-        this.t = t;
+    }
+    
+    public void parseMap(String raw) {
+        this.t = new Tablier(raw);
     }
 
     public void choixPlacer() {

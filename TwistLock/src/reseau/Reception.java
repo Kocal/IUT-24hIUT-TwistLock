@@ -23,6 +23,7 @@ public class Reception implements Runnable {
         try {
             this.in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         } catch (IOException ex) {
+            System.err.println("Erreur : Recuperation du flux d'entrée de la socket impossible.");
             Logger.getLogger(Reception.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
@@ -34,6 +35,7 @@ public class Reception implements Runnable {
                 message = in.readLine();
                 System.out.println("Reception : " + message);
             } catch (IOException e) {
+                System.err.println("Erreur : Recuperation de lecture du message de la socket impossible.");
                 e.printStackTrace();
             }
         }

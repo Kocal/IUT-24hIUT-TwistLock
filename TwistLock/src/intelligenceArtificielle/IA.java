@@ -18,7 +18,6 @@ import twistlock.Constante.Couleur;
  */
 public class IA {
 
-
     public Tablier t;
 
     public Couleur col;
@@ -26,13 +25,13 @@ public class IA {
     public int pointA, pointD;
     public Coordonee c, cA, cD;
     /*public int l, h, c;
-    public int lA, hA, cA;
-    public int lD, hD, cD;*/
+     public int lA, hA, cA;
+     public int lD, hD, cD;*/
     /*
      10- ah vous de jouer (Vert)
      20: coup adversaire: 9B1
-    
-    
+
+
      //ici chercher coin dont somme conteneur + élevé (voir où est adverse pour maximiser point
      */
     private EtatPartie state;
@@ -42,7 +41,7 @@ public class IA {
         state = Inscription;
         this.col = col;
     }
-    
+
     public void parseMap(String raw) {
         this.t = new Tablier(raw);
     }
@@ -57,9 +56,9 @@ public class IA {
 
     public void meilleurMethode() {
         ///
-        
-       cA = methodeAttaque();
-       cD = MethodeDefense();
+
+        cA = methodeAttaque();
+        cD = MethodeDefense();
 
         if (pointA > pointD) {
             c = cA;
@@ -73,13 +72,13 @@ public class IA {
 
         //penser modiffier PointA
         Point p = getMeilleurCoin();
-        return new Coordonee(0,0,0);
-        
+        return new Coordonee(0, 0, 0);
+
     }
 
     public Coordonee MethodeDefense() {
-        
-        return new Coordonee(0,0,0);
+
+        return new Coordonee(0, 0, 0);
 
         //penser modiffier PointD
     }
@@ -175,8 +174,8 @@ public class IA {
     public void setEtatPartie(EtatPartie s) {
         this.state = s;
     }
-    
-    public EtatPartie getEtatPartie(){
+
+    public EtatPartie getEtatPartie() {
         return this.state;
     }
 
@@ -228,10 +227,11 @@ public class IA {
                         p.colonne = j;
                     }
                     coins[i][j].setTaken(Couleur.INNOCUPE);
-           
+
                 }
             }
         }
+        coins[p.ligne][p.colonne].setTaken(col);
         return p;
     }
 
@@ -269,9 +269,9 @@ public class IA {
         }
         return p;
     }
-    
-    private class Coordonee{
-        
+
+    private class Coordonee {
+
         public int h, l, c;
 
         public Coordonee(int h, int l, int c) {
@@ -279,7 +279,6 @@ public class IA {
             this.l = l;
             this.c = c;
         }
-        
-        
+
     }
 }

@@ -33,7 +33,7 @@ public class Tablier {
         
         for(int i = 0; i < this.hauteur; i++) {
             for(int j = 0; j < this.largeur; j++) {
-                this.grille[i][j] = new Conteneur();
+                this.grille[i][j] = new Conteneur(i, j, (int) (Math.random() * 49 + 5));
             }
         }
     }
@@ -60,7 +60,7 @@ public class Tablier {
         
         for(int i = 0; i < this.hauteur; i++) {
             for(int j = 0; j < this.largeur; j++) {
-                s += "|" + this.grille[i][j];
+                s += "|" + this.grille[i][j].valeur;
             }
             
             s += "|\n";

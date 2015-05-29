@@ -48,6 +48,19 @@ public class Tablier {
     public Tablier(String grilleChaine) {
         this.init(grilleChaine);
     }
+    
+    public Tablier(Tablier t){
+        this.hauteur = t.hauteur;
+        
+        this.largeur = t.largeur;
+        this.init(hauteur, largeur);
+        for(int i = 0; i < largeur; i ++){
+            for(int j = 0; j < hauteur; j ++){
+                this.grille[j][i] = new Conteneur(t.getConteneur(j, i));
+                this.coins[j][i] = new Coin(t.getCoin(j, i));
+            }
+        }
+    }
 
     /**
      * Initialise une grille de dimension "hauteur" * "largeur"
@@ -157,6 +170,15 @@ public class Tablier {
         }
 
         return this.grille[ligne][colonne];
+    }
+    
+    public Coin getCoin(int ligne, int colonne) {
+        if (ligne < 0 || ligne >= this.hauteur
+                || colonne < 0 || colonne >= this.largeur) {
+            return null;
+        }
+
+        return this.coins[ligne][colonne];
     }
     
     /**

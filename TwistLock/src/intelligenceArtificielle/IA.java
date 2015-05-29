@@ -71,6 +71,7 @@ public class IA {
     public void methodeAttaque(){
         
         //penser modiffier PointA
+        
     }
     
             

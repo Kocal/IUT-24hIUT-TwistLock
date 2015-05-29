@@ -20,6 +20,7 @@ public class Coin {
 
     // Vrai = Coin occupé, Faux = Coin non-occupé
     private int taken;
+    
 
     /**
      * Initialise un nouveau Coin

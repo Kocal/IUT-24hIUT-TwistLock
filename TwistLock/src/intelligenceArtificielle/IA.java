@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import tablier.Coin;
 import tablier.Conteneur;
 import tablier.Tablier;
+import twistlock.Constante.couleur;
 
 /**
  *
@@ -17,6 +18,9 @@ import tablier.Tablier;
 public class IA {
 
     private Tablier t;
+    
+    public couleur col;
+            
     /*
      10- ah vous de jouer (Vert)
      20: coup adversaire: 9B1

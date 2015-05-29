@@ -1,7 +1,10 @@
 package reseau;
 
 import java.io.IOException;
+import java.net.DatagramSocket;
+import java.net.InetAddress;
 import java.net.Socket;
+import java.net.SocketException;
 import java.net.UnknownHostException;
 import java.util.Scanner;
 import java.util.logging.Level;
@@ -28,19 +31,22 @@ public class Connexion {
         numeroPort = scan.nextLine();
         try {
             System.out.println("Connexion au serveur (" + adresseIp + ":" + numeroPort + ") en cours...");
-            socket = new Socket(adresseIp, Integer.parseInt(numeroPort));
+            InetAddress serveur = InetAddress.getByName(adresseIp);
             System.out.println("Connexion réussie.");
 
-            Emission emission = new Emission(socket);
+            DatagramSocket socket = new DatagramSocket();
+
+            Thread threadReception = new Thread(new Reception(socket, Integer.parseInt(numeroPort)));
+            threadReception.start();
+
+            Emission emission = new Emission(socket, serveur, Integer.parseInt(numeroPort));
             emission.emettre("Chicken Brothers");
 
-            Thread threadReception = new Thread(new Reception(socket));
-            threadReception.start();
+            //172.30.7.16:9877
         } catch (UnknownHostException ex) {
             System.err.println("Erreur : impossible de se connecter au serveur d'adresse " + adresseIp + ".");
             Logger.getLogger(Connexion.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            System.err.println("Erreur : aucun serveur à l'écoute du port " + numeroPort + ".");
+        } catch (SocketException ex) {
             Logger.getLogger(Connexion.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

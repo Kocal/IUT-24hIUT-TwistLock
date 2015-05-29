@@ -1,9 +1,8 @@
 package reseau;
 
-import java.net.Socket;
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -13,37 +12,35 @@ import java.util.logging.Logger;
  */
 public class Reception implements Runnable {
 
-    private Socket socket = null;
-    private BufferedReader in;
+    private static final int TAILLE = 1024;
+
+    final static byte buffer[] = new byte[TAILLE];
+
+    DatagramSocket socket = null;
+    int port = -1;
     private String message = null;
 
-    public Reception(Socket socket) {
-        this.socket = socket;
-
-        try {
-            this.in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-        } catch (IOException ex) {
-            System.err.println("Erreur : Recuperation du flux d'entrée de la socket impossible.");
-            Logger.getLogger(Reception.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    public Reception(DatagramSocket socketServeur, int portServeur) {
+        socket = socketServeur;
+        port = portServeur;
     }
 
     @Override
     public void run() {
-        message = null;
-
         try {
-            while (!Thread.currentThread().isInterrupted() && (message = in.readLine()) != null) {
+            while (true) {
+                message = null;
+
+                DatagramPacket donneesRecues = new DatagramPacket(buffer, buffer.length);
+                socket.receive(donneesRecues);
+
+                message = new String(donneesRecues.getData());
                 System.out.println("Reception : " + message);
+
                 Traitement traitement = new Traitement(message);
             }
         } catch (IOException ex) {
-            System.err.println("Erreur : impossible de recevoir des message...");
             Logger.getLogger(Reception.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }
-
-    public String getMessage() {
-        return message;
     }
 }

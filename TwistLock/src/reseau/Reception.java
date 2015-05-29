@@ -31,6 +31,10 @@ public class Reception implements Runnable {
             while (true) {
                 message = null;
 
+                for (int i = 0; i < buffer.length; i++) {
+                    buffer[i] = '\0';
+                }
+
                 DatagramPacket donneesRecues = new DatagramPacket(buffer, buffer.length);
                 socket.receive(donneesRecues);
 

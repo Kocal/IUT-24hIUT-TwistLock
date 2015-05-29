@@ -15,10 +15,6 @@ public class Coin {
      */
     private ArrayList<Conteneur> conteneurs;
 
-    public static int INNOCUPE = 0;
-    public static int VERT = 1;
-    public static int ROUGE = 2;
-
     // Vrai = Coin occupé, Faux = Coin non-occupé
     private couleur col;
 

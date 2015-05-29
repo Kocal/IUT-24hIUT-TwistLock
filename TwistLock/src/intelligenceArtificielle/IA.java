@@ -6,6 +6,7 @@
 package intelligenceArtificielle;
 
 import static intelligenceArtificielle.EtatPartie.Inscription;
+import java.awt.Point;
 import java.util.ArrayList;
 import tablier.Coin;
 import tablier.Conteneur;
@@ -31,8 +32,8 @@ public class IA {
      */
     private EtatPartie state;
 
-    public IA(couleur col){
-        
+    public IA(couleur col) {
+
         state = Inscription;
         this.col = col;
     }
@@ -107,4 +108,87 @@ public class IA {
         return b;
     }
 
+    public int getTotalPoint() {
+        int total = 0;
+
+        for (int i = 0; i < t.getHauteur(); i++) {
+            for (int j = 0; j < t.getLargeur(); j++) {
+                Conteneur conteneur = t.getConteneur(i, j);
+
+                int nombreAllier = 0;
+                int nombreEnnemi = 0;
+                for (Coin coin : conteneur.getCoins()) {
+                    if (coin.getTaken() == col) {
+                        nombreAllier++;
+                    }
+                    else if (coin.getTaken() == couleur.ROUGE && col == couleur.VERT) {
+                        nombreEnnemi++;
+                    }
+                    else if (coin.getTaken() == couleur.VERT && col == couleur.ROUGE) {
+                        nombreEnnemi++;
+                    }
+                }
+                if (nombreAllier > nombreEnnemi) {
+                    total += conteneur.valeur;
+                }
+            }
+        }
+        return total;
+    }
+
+    public int getTotalPointEnnemi() {
+        int total = 0;
+
+        for (int i = 0; i < t.getHauteur(); i++) {
+            for (int j = 0; j < t.getLargeur(); j++) {
+                Conteneur conteneur = t.getConteneur(i, j);
+
+                int nombreAllier = 0;
+                int nombreEnnemi = 0;
+                for (Coin coin : conteneur.getCoins()) {
+                    if (coin.getTaken() == col) {
+                        nombreAllier++;
+                    }
+                    else if (coin.getTaken() == couleur.ROUGE && col == couleur.VERT) {
+                        nombreEnnemi++;
+                    }
+                    else if (coin.getTaken() == couleur.VERT && col == couleur.ROUGE) {
+                        nombreEnnemi++;
+                    }
+                }
+                if (nombreEnnemi > nombreAllier) {
+                    total += conteneur.valeur;
+                }
+            }
+        }
+        return total;
+    }
+
+    public Point getMeilleurCoin() {
+        int total = this.getTotalPoint();
+        int totalEnnemi = this.getTotalPointEnnemi();
+        int maxTotal = 0;
+        Point p = new Point(0, 0);
+
+        Coin[][] coins = t.getCoins();
+
+        for (int i = 0; i < coins.length; i++) {
+            for (int j = 0; j < coins[i].length; j++) {
+                if (coins[i][j].getTaken() == couleur.INNOCUPE) {
+                    coins[i][j].setTaken(col);
+                    int nouveauTotal = this.getTotalPoint();
+                    int nouveauTotalEnnemi = this.getTotalPointEnnemi();
+
+                    int diff = nouveauTotal - total + totalEnnemi - nouveauTotalEnnemi;
+                    if (diff > maxTotal) {
+                        maxTotal = diff;
+                        p.x = i;
+                        p.y = j;
+                    }
+                }
+            }
+        }
+
+        return p;
+    }
 }

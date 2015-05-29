@@ -185,6 +185,7 @@ public class IA {
                         p.x = i;
                         p.y = j;
                     }
+                    coins[i][j].setTaken(couleur.INNOCUPE);
                 }
             }
         }

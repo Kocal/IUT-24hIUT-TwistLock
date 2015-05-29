@@ -18,7 +18,15 @@ public class Tablier {
      */
     private int largeur;
 
+    /**
+     * Tableau 2D de Conteneurs
+     */
     private Conteneur[][] grille;
+    
+    /**
+     * Tableau 2D de Coins
+     */
+    private Coin[][] coins;
 
     /**
      * Instancie un nouveau Tablier de dimension "hauteur" * "largeur"
@@ -29,7 +37,7 @@ public class Tablier {
     public Tablier(int hauteur, int largeur) {
         this.hauteur = hauteur;
         this.largeur = largeur;
-        this.initGrille(hauteur, largeur);
+        this.init(hauteur, largeur);
     }
 
     /**
@@ -38,7 +46,7 @@ public class Tablier {
      * @param grilleChaine
      */
     public Tablier(String grilleChaine) {
-        this.initGrille(grilleChaine);
+        this.init(grilleChaine);
     }
 
     /**
@@ -47,7 +55,7 @@ public class Tablier {
      * @param hauteur Hauteur de la grille
      * @param largeur Largeur de la grille
      */
-    private void initGrille(int hauteur, int largeur) {
+    private void init(int hauteur, int largeur) {
         this.grille = new Conteneur[hauteur][largeur];
 
         for (int i = 0; i < hauteur; i++) {
@@ -62,7 +70,7 @@ public class Tablier {
      *
      * @param grilleChaine
      */
-    private void initGrille(String rawMap) {
+    private void init(String rawMap) {
 
         //rawMap = "MAP=1:2:3:4:5:6:7:8:9:10|11:12:13:14:15:16:17:18:19:20|21:22:23:24:25:26:27:28:29:30|";
         String[] grid_lines = rawMap.substring(4).split("\\|");

@@ -31,10 +31,10 @@ public class IA {
      */
     private EtatPartie state;
 
-    public IA() {
-
+    public IA(couleur col){
+        
         state = Inscription;
-
+        this.col = col;
     }
 
     public void incomingMessage(String message) {

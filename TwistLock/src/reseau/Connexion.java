@@ -6,6 +6,8 @@ import java.net.UnknownHostException;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import reseau.Emission;
+import reseau.Reception;
 
 /**
  *
@@ -29,6 +31,15 @@ public class Connexion {
         try {
             System.out.println("Connexion au serveur (" + adresseIp + ":" + numeroPort + ") en cours...");
             socket = new Socket(adresseIp, Integer.parseInt(numeroPort));
+            System.out.println("Connexion réussie.");
+
+            Emission emission = new Emission(socket);
+            emission.emettre("Chicken Brothers");
+
+            Reception reception = new Reception(socket);
+
+            while (true);
+
         } catch (UnknownHostException ex) {
             System.err.println("Erreur : impossible de se connecter au serveur d'adresse " + adresseIp + ".");
             Logger.getLogger(Connexion.class.getName()).log(Level.SEVERE, null, ex);

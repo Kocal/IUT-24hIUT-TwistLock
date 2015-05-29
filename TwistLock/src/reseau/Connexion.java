@@ -6,8 +6,6 @@ import java.net.UnknownHostException;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import reseau.Emission;
-import reseau.Reception;
 
 /**
  *
@@ -36,7 +34,8 @@ public class Connexion {
             Emission emission = new Emission(socket);
             emission.emettre("Chicken Brothers");
 
-            Reception reception = new Reception(socket);
+            Thread threadReception = new Thread(new Reception(socket));
+            threadReception.start();
 
             while (true);
 
@@ -47,8 +46,5 @@ public class Connexion {
             System.err.println("Erreur : aucun serveur à l'écoute du port " + numeroPort + ".");
             Logger.getLogger(Connexion.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-        // Thread
-        // Réception
     }
 }

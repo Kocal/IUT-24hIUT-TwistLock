@@ -19,7 +19,7 @@ import twistlock.Constante.Couleur;
 public class IA {
 
 
-    private Tablier t;
+    public Tablier t;
 
     public Couleur col;
 
@@ -37,10 +37,11 @@ public class IA {
      */
     private EtatPartie state;
 
-    public IA(Couleur col) {
+    public IA(Couleur col, Tablier t) {
 
         state = Inscription;
         this.col = col;
+        this.t = t;
     }
 
     public void choixPlacer() {

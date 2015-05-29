@@ -40,19 +40,15 @@ public class IA {
         int conteneurH = 0;
         int nombreCoin = 0;
         ArrayList<Conteneur> cont;
-        Coin c = null;
+        Coin c;
         int sum;
         for (int i = 0; i < t.getHauteur(); i++) {
             for (int j = 0; j < t.getLargeur(); j++) {
                 for (int k = 0; k < 4; k++) {
-                    //c = t.getConteneur(i, j).getCase(k);
+                    c = t.getConteneur(i, j).getCoin(i);
                     sum = 0;
-                    if (true) { // !c.isPris();
+                    if (!c.isTaken()) {
 
-                        
-                        /*for (int m = 0; m < 4; m++) {
-                            // sum+= contenuconteneur.coin.
-                        }*/
                         cont = c.getConteneurs();
                         for(Conteneur cat:cont ){
                             sum += cat.valeur;
@@ -67,6 +63,7 @@ public class IA {
         nb = nbConteneur;
         l = conteneurL;
         h = conteneurH;
+        nbC = nombreCoin;
     }
 
     // index correspond au type de message (20, 21, 22, 50, 88)

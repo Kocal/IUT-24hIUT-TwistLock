@@ -25,6 +25,7 @@ public class TwistLock {
         System.out.println(t);
 
         IA ia = new IA(Constante.Couleur.VERT, t);
+        t.mettreAJourPositionEnnemi("4F3", Constante.Couleur.ROUGE);
         System.out.println(ia.getMeilleurCoin().getChaine(t));
         Connexion connexion = new Connexion();
     }

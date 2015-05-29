@@ -14,7 +14,7 @@ public class Reception implements Runnable {
 
     private static final int TAILLE = 1024;
 
-    final static byte buffer[] = new byte[TAILLE];
+    static byte buffer[] = new byte[TAILLE];
 
     DatagramSocket socket = null;
     int port = -1;
@@ -34,6 +34,8 @@ public class Reception implements Runnable {
                 for (int i = 0; i < buffer.length; i++) {
                     buffer[i] = '\0';
                 }
+
+                buffer = new byte[TAILLE];
 
                 DatagramPacket donneesRecues = new DatagramPacket(buffer, buffer.length);
                 socket.receive(donneesRecues);

@@ -25,6 +25,15 @@ public class Conteneur {
         this.coins = new ArrayList<>(4);
         this.coul = Couleur.INNOCUPE;
     }
+    
+    public Conteneur(Conteneur mCont){
+        
+        this.coins = mCont.getCoins();
+        this.colonne = mCont.colonne;
+        this.coul = mCont.getColor();
+        this.ligne = mCont.ligne;
+        this.valeur = mCont.valeur;
+    }
 
     public String getColonneAfficher() {
         return Character.toString((char) ('A' + colonne));

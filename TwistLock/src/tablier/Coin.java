@@ -37,6 +37,11 @@ public class Coin {
         this.conteneurs = new ArrayList<>();
         this.col = col;
     }
+    
+    public Coin(Coin mCoin){
+       this.col = mCoin.getTaken();
+       this.conteneurs = mCoin.getConteneurs();
+    }
 
     /**
      * Ajoute une référence de Conteneur au Coin.

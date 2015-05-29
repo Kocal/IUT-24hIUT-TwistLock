@@ -1,6 +1,7 @@
 package reseau;
 
 import intelligenceArtificielle.IA;
+import tablier.Tablier;
 import twistlock.Constante.Couleur;
 
 
@@ -14,6 +15,8 @@ public class Traitement {
     String code = null;
     
     private IA ia;
+    
+    private tablier.Tablier tablier;
 
     public Traitement(String messageRecu) {
         message = messageRecu;
@@ -77,6 +80,8 @@ public class Traitement {
                 // Attente du prochain message qui commence par MAP
                 // if (MAP)
                 // Appeller la fonction d'initialisation de la map
+                this.tablier = new Tablier(messageRecu);
+                
                 break;
 
             case "10":
@@ -116,5 +121,13 @@ public class Traitement {
                 System.out.println("Erreur : code non reconnu [" + code + "]");
                 break;
         }
+    }
+    
+    public Tablier getTablier() {
+        return this.tablier;
+    }
+    
+    public void setTablier(Tablier t) {
+        this.tablier = t;
     }
 }

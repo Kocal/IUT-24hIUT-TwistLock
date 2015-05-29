@@ -1,7 +1,7 @@
 package tablier;
 
 import java.util.ArrayList;
-import twistlock.Constante.couleur;
+import twistlock.Constante.Couleur;
 
 /**
  * Classe Coin
@@ -16,20 +16,20 @@ public class Coin {
     private ArrayList<Conteneur> conteneurs;
 
     // Vrai = Coin occupé, Faux = Coin non-occupé
-    private couleur col;
+    private Couleur col;
 
     /**
      * Initialise un nouveau Coin
      */
     public Coin() {
         this.conteneurs = new ArrayList<>();
-        this.col = couleur.INNOCUPE;
+        this.col = Couleur.INNOCUPE;
     }
 
     public Coin(int taken) {
         this.conteneurs = new ArrayList<>();
     }
-    public Coin(couleur col){
+    public Coin(Couleur col){
         this.conteneurs = new ArrayList<>();
         this.col = col;
     }
@@ -69,15 +69,15 @@ public class Coin {
         return this.conteneurs;
     }
 
-    public void setTaken(couleur col) {
+    public void setTaken(Couleur col) {
         this.col = col;
     }
 
     public boolean isTaken() {
-        return col != couleur.INNOCUPE;
+        return col != Couleur.INNOCUPE;
     }
 
-    public couleur getTaken() {
+    public Couleur getTaken() {
         return this.col;
     }
 }

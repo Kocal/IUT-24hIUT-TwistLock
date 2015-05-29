@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import tablier.Coin;
 import tablier.Conteneur;
 import tablier.Tablier;
-import twistlock.Constante.couleur;
+import twistlock.Constante.Couleur;
 
 /**
  *
@@ -21,7 +21,7 @@ public class IA {
 
     private Tablier t;
 
-    public couleur col;
+    public Couleur col;
 
     /*
      10- ah vous de jouer (Vert)
@@ -32,7 +32,7 @@ public class IA {
      */
     private EtatPartie state;
 
-    public IA(couleur col) {
+    public IA(Couleur col) {
 
         state = Inscription;
         this.col = col;
@@ -121,10 +121,10 @@ public class IA {
                     if (coin.getTaken() == col) {
                         nombreAllier++;
                     }
-                    else if (coin.getTaken() == couleur.ROUGE && col == couleur.VERT) {
+                    else if (coin.getTaken() == Couleur.ROUGE && col == Couleur.VERT) {
                         nombreEnnemi++;
                     }
-                    else if (coin.getTaken() == couleur.VERT && col == couleur.ROUGE) {
+                    else if (coin.getTaken() == Couleur.VERT && col == Couleur.ROUGE) {
                         nombreEnnemi++;
                     }
                 }
@@ -149,10 +149,10 @@ public class IA {
                     if (coin.getTaken() == col) {
                         nombreAllier++;
                     }
-                    else if (coin.getTaken() == couleur.ROUGE && col == couleur.VERT) {
+                    else if (coin.getTaken() == Couleur.ROUGE && col == Couleur.VERT) {
                         nombreEnnemi++;
                     }
-                    else if (coin.getTaken() == couleur.VERT && col == couleur.ROUGE) {
+                    else if (coin.getTaken() == Couleur.VERT && col == Couleur.ROUGE) {
                         nombreEnnemi++;
                     }
                 }
@@ -163,7 +163,7 @@ public class IA {
         }
         return total;
     }
-
+    
     public Point getMeilleurCoin() {
         int total = this.getTotalPoint();
         int totalEnnemi = this.getTotalPointEnnemi();
@@ -174,7 +174,7 @@ public class IA {
 
         for (int i = 0; i < coins.length; i++) {
             for (int j = 0; j < coins[i].length; j++) {
-                if (coins[i][j].getTaken() == couleur.INNOCUPE) {
+                if (coins[i][j].getTaken() == Couleur.INNOCUPE) {
                     coins[i][j].setTaken(col);
                     int nouveauTotal = this.getTotalPoint();
                     int nouveauTotalEnnemi = this.getTotalPointEnnemi();
@@ -185,11 +185,48 @@ public class IA {
                         p.x = i;
                         p.y = j;
                     }
-                    coins[i][j].setTaken(couleur.INNOCUPE);
+                    coins[i][j].setTaken(Couleur.INNOCUPE);
                 }
             }
         }
+        return p;
+    }
+    
+    public Point getMeilleurCoinEnnemi() {
+        int totalEnnemi = this.getTotalPoint();
+        int total = this.getTotalPointEnnemi();
+        int maxTotal = 0;
+        Point p = new Point(0, 0);
 
+        Coin[][] coins = t.getCoins();
+
+        Couleur colEnnemi;
+        if(col == Couleur.ROUGE)
+        {
+            colEnnemi = Couleur.VERT;
+        }
+        else
+        {
+            colEnnemi = Couleur.ROUGE;
+        }
+        
+        for (int i = 0; i < coins.length; i++) {
+            for (int j = 0; j < coins[i].length; j++) {
+                if (coins[i][j].getTaken() == Couleur.INNOCUPE) {
+                    coins[i][j].setTaken(colEnnemi);
+                    int nouveauTotalEnnemi = this.getTotalPoint();
+                    int nouveauTotal = this.getTotalPointEnnemi();
+
+                    int diff = nouveauTotal - total + totalEnnemi - nouveauTotalEnnemi;
+                    if (diff > maxTotal) {
+                        maxTotal = diff;
+                        p.x = i;
+                        p.y = j;
+                    }
+                    coins[i][j].setTaken(Couleur.INNOCUPE);
+                }
+            }
+        }
         return p;
     }
 }

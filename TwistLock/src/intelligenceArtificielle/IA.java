@@ -37,27 +37,6 @@ public class IA {
         this.col = col;
     }
 
-    public void incomingMessage(String message) {
-
-        if (message.contains("Bonjour")) {
-            //détéction des couleurs de joueur
-        } else if (message.contains("la partie va commencer")) {
-            //génération grille/tablier
-        } else if (message.contains("A vous de jouer")) {
-            //mise à jour grille avec le coup jouer
-        } else if (message.contains("coup joué illégal")) {
-            //jamais ici !
-        } else if (message.contains("coup adversaire illégal")) {
-            //
-        } else if (message.contains("Vous ne pouvez plus jouer")) {
-            //
-        } else if (message.contains("Partie Terminée, vous avez")) {
-            //gagner, perdu ?
-            //fermeture connexion
-        }
-
-    }
-
     public void choixPlacer() {
 
         int nb = 0, l = 0, h = 0, nbCoin = 0;

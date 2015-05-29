@@ -1,5 +1,9 @@
 package reseau;
 
+import intelligenceArtificielle.IA;
+import twistlock.Constante.Couleur;
+
+
 /**
  *
  * @author Arnaud
@@ -8,23 +12,66 @@ public class Traitement {
 
     String message = null;
     String code = null;
+    
+    private IA ia;
 
     public Traitement(String messageRecu) {
         message = messageRecu;
         code = message.substring(0, 2);
 
         System.out.println("Code du dernier message recu : " + code);
+        
+        String team;
 
         switch (code) {
-            case "1-":
+          case "1-":
+                
+                team = messageRecu.substring(10);
+                
+                if(team == "Chicken Brothers") {
+                    
+                    if(messageRecu.contains("VERT"))
+                        ia = new IA(Couleur.VERT);
+                    
+                    if(messageRecu.contains("ROUGE"))
+                        ia = new IA(Couleur.ROUGE);
+                    
+                }
+                //System.out.println(">>> " + );
+                
+                
                 // "Bonjour équipe 1..."
                 // Appeller fonction qui définie la couleur avec en paramètre ROUGE
+                
+                /*
+                
+                NOUS = ChickenBrothers tmtc
+                
+                if(équipe1 == NOUS)
+                     IA ia = new IA(ROUGE);
+                */
+                
                 break;
 
             case "2-":
-                // "Bonjour équipe 2..."
-                // Appeller fonction qui définie la couleur avec en paramètre VERT
+                
+                team = messageRecu.substring(10);
+                
+                if(team == "Chicken Brothers") {
+                    
+                    if(messageRecu.contains("VERT"))
+                        ia = new IA(Couleur.VERT);
+                    
+                    if(messageRecu.contains("ROUGE"))
+                        ia = new IA(Couleur.ROUGE);
+                    
+                }
+
+                
+                //ia.setEtatPartie(EtatPartie.BATAILLE);
+                
                 break;
+
 
             case "01":
                 // Attente du prochain message qui commence par MAP

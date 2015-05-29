@@ -1,6 +1,8 @@
 package tablier;
 
 import java.util.ArrayList;
+import twistlock.Constante;
+import twistlock.Constante.Couleur;
 
 /**
  *
@@ -206,5 +208,14 @@ public class Tablier {
                 this.coins[i + 1][j].addConteneur(this.grille[i][j]);
             }
         }
+    }
+    
+    public void mettreAJourPositionEnnemi(String chaine, Couleur colEnnemi)
+    {
+        int ligne = chaine.charAt(0)-1;
+        int colonne = chaine.charAt(1-'A');
+        int numCoin = chaine.charAt(2)-1;
+        
+        this.grille[ligne][colonne].getCoin(numCoin).setTaken(colEnnemi);      
     }
 }

@@ -6,7 +6,6 @@
 package intelligenceArtificielle;
 
 import static intelligenceArtificielle.EtatPartie.Inscription;
-import java.awt.Point;
 import java.util.ArrayList;
 import tablier.Coin;
 import tablier.Conteneur;
@@ -182,8 +181,8 @@ public class IA {
                     int diff = nouveauTotal - total + totalEnnemi - nouveauTotalEnnemi;
                     if (diff > maxTotal) {
                         maxTotal = diff;
-                        p.x = i;
-                        p.y = j;
+                        p.ligne = i;
+                        p.colonne = j;
                     }
                     coins[i][j].setTaken(Couleur.INNOCUPE);
                 }
@@ -220,8 +219,8 @@ public class IA {
                     int diff = nouveauTotal - total + totalEnnemi - nouveauTotalEnnemi;
                     if (diff > maxTotal) {
                         maxTotal = diff;
-                        p.x = i;
-                        p.y = j;
+                        p.ligne = i;
+                        p.colonne = j;
                     }
                     coins[i][j].setTaken(Couleur.INNOCUPE);
                 }

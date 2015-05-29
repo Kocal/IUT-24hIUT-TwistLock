@@ -18,7 +18,6 @@ public class Reception implements Runnable{
     private Socket socket = null;
     private BufferedReader in;
     private String message = null;
-    private String trame = null;
 	
     public Reception(Socket socket){
         
@@ -38,7 +37,7 @@ public class Reception implements Runnable{
             try {
 
                 message = in.readLine();
-                System.out.println("Le serveur vous dit :" + message);
+                System.out.println("Réception :" + message);
 
             } catch (IOException e) {
 
@@ -47,7 +46,7 @@ public class Reception implements Runnable{
         }
     }
     
-    public String getTrame() {
-        return trame;
+    public String getMessage() {
+        return message;
     }
 }

@@ -171,6 +171,11 @@ public class Tablier {
                 this.grille[i][j].addCoin(this.coins[i][j + 1]);
                 this.grille[i][j].addCoin(this.coins[i + 1][j + 1]);
                 this.grille[i][j].addCoin(this.coins[i + 1][j]);
+                
+                this.coins[i][j].addConteneur(this.grille[i][j]);
+                this.coins[i][j + 1].addConteneur(this.grille[i][j]);
+                this.coins[i + 1][j + 1].addConteneur(this.grille[i][j]);
+                this.coins[i + 1][j].addConteneur(this.grille[i][j]);
             }
         }
     }

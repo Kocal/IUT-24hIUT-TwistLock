@@ -5,28 +5,83 @@
  */
 package intelligenceArtificielle;
 
+import tablier.Tablier;
+
 /**
  *
  * @author Emilien
  */
 public class IA {
-    
-    
+
+    private Tablier t;
     /*
-    10- ah vous de jouer (Vert)
-    20: coup adversaire: 9B1
+     10- ah vous de jouer (Vert)
+     20: coup adversaire: 9B1
     
-    */
     
-    // index correspond au type de message (20, 21, 22, 50, 88)
-    public void posAdversaire(String index){
+    //ici chercher coin dont somme conteneur + élevé (voir où est adverse pour maximiser point
+     */
+    
+
+    public void choixPlacer(){
         
-        if(true){
-            
+        int nb = 0, l = 0, h = 0, nbCoin =0;
+        getBetterCoin(nb, l, h, nbCoin);
+        boolean[] bool = getCoinPossible(l, h);
+        
+        
+        
+        
+    }
+    public void getBetterCoin(int nb, int l, int h, int nbC){
+        
+        int nbConteneur = 0;
+        int conteneurL = 0;
+        int conteneurH = 0;
+        int nombreCoin;
+        for (int i = 0; i < t.getHauteur(); i++) {
+            for (int j = 0; j < t.getLargeur(); j++) {
+                if (true) { // contenu conteneur > nbConteneur
+                    nbConteneur = 1; //contenu conteneur
+                    conteneurL = j;
+                    conteneurH = i;
+                }
+            }
         }
+        nb = nbConteneur;
+        l = conteneurL;
+        h = conteneurH;
     }
-    public void setCoin(String c){
-        
-        
+    // index correspond au type de message (20, 21, 22, 50, 88)
+    public void getBetterConteneur(int nb, int l, int h) {
+
+        int nbConteneur = 0;
+        int conteneurL = 0;
+        int conteneurH = 0;
+        for (int i = 0; i < t.getHauteur(); i++) {
+            for (int j = 0; j < t.getLargeur(); j++) {
+                if (true) { // contenu conteneur > nbConteneur
+                    nbConteneur = 1; //contenu conteneur
+                    conteneurL = j;
+                    conteneurH = i;
+                }
+            }
+        }
+        nb = nbConteneur;
+        l = conteneurL;
+        h = conteneurH;
     }
+    
+    public boolean[] getCoinPossible(int l, int h){
+        
+        boolean b[] = new boolean[4];
+        
+        b[0] = true;
+        b[1] = true;
+        b[2] = true;
+        b[3] = true;
+        
+        return b;
+    }
+
 }

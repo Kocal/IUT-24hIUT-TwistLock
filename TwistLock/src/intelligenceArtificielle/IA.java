@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import tablier.Coin;
 import tablier.Conteneur;
 import tablier.Tablier;
-import twistlock.Constante.couleur;
+import twistlock.Constante.Couleur;
 
 /**
  *
@@ -20,8 +20,12 @@ public class IA {
 
     private Tablier t;
 
-    public couleur col;
+    public Couleur col;
 
+    public int pointA, pointD;
+    public int l, h, c;
+    public int lA, hA, cA;
+    public int lD, hD, cD;
     /*
      10- ah vous de jouer (Vert)
      20: coup adversaire: 9B1
@@ -31,31 +35,10 @@ public class IA {
      */
     private EtatPartie state;
 
-    public IA(couleur col){
-        
+    public IA(Couleur col) {
+
         state = Inscription;
         this.col = col;
-    }
-
-    public void incomingMessage(String message) {
-
-        if (message.contains("Bonjour")) {
-            //détéction des couleurs de joueur
-        } else if (message.contains("la partie va commencer")) {
-            //génération grille/tablier
-        } else if (message.contains("A vous de jouer")) {
-            //mise à jour grille avec le coup jouer
-        } else if (message.contains("coup joué illégal")) {
-            //jamais ici !
-        } else if (message.contains("coup adversaire illégal")) {
-            //
-        } else if (message.contains("Vous ne pouvez plus jouer")) {
-            //
-        } else if (message.contains("Partie Terminée, vous avez")) {
-            //gagner, perdu ?
-            //fermeture connexion
-        }
-
     }
 
     public void choixPlacer() {
@@ -66,6 +49,36 @@ public class IA {
 
     }
 
+    public void meilleurMethode(){
+        ///
+        
+        methodeAttaque();
+        MethodeDefense();
+        
+        if(pointA > pointD){
+            l = lA;
+            h = hA;
+            c = cA;
+        }
+        else{
+            l = lD;
+            h = hD;
+            c = cD;
+        }
+            
+    } 
+    
+    public void methodeAttaque(){
+        
+        //penser modiffier PointA
+    }
+    
+            
+    public void MethodeDefense(){
+        
+        //penser modiffier PointD
+    }
+    
     public void getBetterCoin(int l, int h, int nbC) {
         int conteneurL = 0;
         int conteneurH = 0;
@@ -128,4 +141,125 @@ public class IA {
         return b;
     }
 
+    public int getTotalPoint() {
+        int total = 0;
+
+        for (int i = 0; i < t.getHauteur(); i++) {
+            for (int j = 0; j < t.getLargeur(); j++) {
+                Conteneur conteneur = t.getConteneur(i, j);
+
+                int nombreAllier = 0;
+                int nombreEnnemi = 0;
+                for (Coin coin : conteneur.getCoins()) {
+                    if (coin.getTaken() == col) {
+                        nombreAllier++;
+                    }
+                    else if (coin.getTaken() == Couleur.ROUGE && col == Couleur.VERT) {
+                        nombreEnnemi++;
+                    }
+                    else if (coin.getTaken() == Couleur.VERT && col == Couleur.ROUGE) {
+                        nombreEnnemi++;
+                    }
+                }
+                if (nombreAllier > nombreEnnemi) {
+                    total += conteneur.valeur;
+                }
+            }
+        }
+        return total;
+    }
+
+    public int getTotalPointEnnemi() {
+        int total = 0;
+
+        for (int i = 0; i < t.getHauteur(); i++) {
+            for (int j = 0; j < t.getLargeur(); j++) {
+                Conteneur conteneur = t.getConteneur(i, j);
+
+                int nombreAllier = 0;
+                int nombreEnnemi = 0;
+                for (Coin coin : conteneur.getCoins()) {
+                    if (coin.getTaken() == col) {
+                        nombreAllier++;
+                    }
+                    else if (coin.getTaken() == Couleur.ROUGE && col == Couleur.VERT) {
+                        nombreEnnemi++;
+                    }
+                    else if (coin.getTaken() == Couleur.VERT && col == Couleur.ROUGE) {
+                        nombreEnnemi++;
+                    }
+                }
+                if (nombreEnnemi > nombreAllier) {
+                    total += conteneur.valeur;
+                }
+            }
+        }
+        return total;
+    }
+    
+    public Point getMeilleurCoin() {
+        int total = this.getTotalPoint();
+        int totalEnnemi = this.getTotalPointEnnemi();
+        int maxTotal = 0;
+        Point p = new Point(0, 0);
+
+        Coin[][] coins = t.getCoins();
+
+        for (int i = 0; i < coins.length; i++) {
+            for (int j = 0; j < coins[i].length; j++) {
+                if (coins[i][j].getTaken() == Couleur.INNOCUPE) {
+                    coins[i][j].setTaken(col);
+                    int nouveauTotal = this.getTotalPoint();
+                    int nouveauTotalEnnemi = this.getTotalPointEnnemi();
+
+                    int diff = nouveauTotal - total + totalEnnemi - nouveauTotalEnnemi;
+                    if (diff > maxTotal) {
+                        maxTotal = diff;
+                        p.ligne = i;
+                        p.colonne = j;
+                    }
+                    coins[i][j].setTaken(Couleur.INNOCUPE);
+                }
+            }
+        }
+        return p;
+    }
+    
+    public Point getMeilleurCoinEnnemi() {
+        int totalEnnemi = this.getTotalPoint();
+        int total = this.getTotalPointEnnemi();
+        int maxTotal = 0;
+        Point p = new Point(0, 0);
+
+        Coin[][] coins = t.getCoins();
+
+        Couleur colEnnemi;
+        if(col == Couleur.ROUGE)
+        {
+            colEnnemi = Couleur.VERT;
+        }
+        else
+        {
+            colEnnemi = Couleur.ROUGE;
+        }
+        
+        for (int i = 0; i < coins.length; i++) {
+            for (int j = 0; j < coins[i].length; j++) {
+                if (coins[i][j].getTaken() == Couleur.INNOCUPE) {
+                    coins[i][j].setTaken(colEnnemi);
+                    int nouveauTotalEnnemi = this.getTotalPoint();
+                    int nouveauTotal = this.getTotalPointEnnemi();
+
+                    int diff = nouveauTotal - total + totalEnnemi - nouveauTotalEnnemi;
+                    if (diff > maxTotal) {
+                        maxTotal = diff;
+                        p.ligne = i;
+                        p.colonne = j;
+                    }
+                    coins[i][j].setTaken(Couleur.INNOCUPE);
+                }
+            }
+        }
+        return p;
+    }
 }

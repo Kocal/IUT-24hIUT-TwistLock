@@ -11,5 +11,5 @@ package twistlock;
  */
 public class Constante {
     
-    public static enum couleur{INNOCUPE, VERT, ROUGE};
+    public static enum Couleur{INNOCUPE, VERT, ROUGE};
 }

@@ -57,12 +57,19 @@ public class Tablier {
      */
     private void init(int hauteur, int largeur) {
         this.grille = new Conteneur[hauteur][largeur];
+        this.coins = new Coin[hauteur + 1][largeur + 1];
 
-        for (int i = 0; i < hauteur; i++) {
-            for (int j = 0; j < largeur; j++) {
-                this.grille[i][j] = new Conteneur(i, j, (int) (Math.random() * 49 + 5));
+        for (int i = 0; i <= hauteur; i++) {
+            for (int j = 0; j <= largeur; j++) {
+                if(i != hauteur && j != largeur) {
+                    this.grille[i][j] = new Conteneur(i, j, (int) (Math.random() * 49 + 5));
+                }
+                
+                this.coins[i][j] = new Coin();
             }
         }
+        
+        this.patchCoins();
     }
 
     /**
@@ -79,17 +86,22 @@ public class Tablier {
         this.largeur = grid_lines[0].split(":").length;
 
         this.grille = new Conteneur[hauteur][largeur];
+        this.coins = new Coin[hauteur + 1][largeur + 1];
 
-        for (int j = 0; j < grid_lines.length; j++) {
+        for (int j = 0; j <= grid_lines.length; j++) {
 
             String[] grid_column = grid_lines[j].split(":");
 
-            for (int i = 0; i < grid_column.length; i++) {
-                this.grille[j][i] = new Conteneur(j, i, Integer.valueOf(grid_column[i]));
+            for (int i = 0; i <= grid_column.length; i++) {
+                if(j != grid_lines.length && i != grid_column.length) {
+                    this.grille[j][i] = new Conteneur(j, i, Integer.valueOf(grid_column[i]));
+                }
 
+                this.coins[j][i] = new Coin();
             }
         }
 
+        this.patchCoins();
     }
 
     /**
@@ -139,5 +151,27 @@ public class Tablier {
         }
 
         return this.grille[ligne][colonne];
+    }
+    
+    /**
+     * Retourne un tableau 2D de Coin
+     * @return 
+     */
+    public Coin[][] getCoins() {
+        return this.coins;
+    }
+    
+    /**
+     * Associe les Coin et Conteneurs
+     */
+    private void patchCoins() {
+        for(int i = 0; i < this.hauteur; i++) {
+            for(int j = 0; j < this.largeur; j++) {
+                this.grille[i][j].addCoin(this.coins[i][j]);
+                this.grille[i][j].addCoin(this.coins[i][j + 1]);
+                this.grille[i][j].addCoin(this.coins[i + 1][j + 1]);
+                this.grille[i][j].addCoin(this.coins[i + 1][j]);
+            }
+        }
     }
 }

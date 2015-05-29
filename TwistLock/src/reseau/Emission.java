@@ -14,9 +14,9 @@ import java.util.logging.Logger;
  */
 public class Emission {
 
-    DatagramSocket socket = null;
-    private InetAddress adresse = null;
-    int port = -1;
+    static DatagramSocket socket = null;
+    static private InetAddress adresse = null;
+    static int port = -1;
 
     public Emission(DatagramSocket socketServeur, InetAddress adresseServeur, int portServeur) {
         socket = socketServeur;
@@ -24,7 +24,7 @@ public class Emission {
         port = portServeur;
     }
 
-    public void emettre(String message) {
+    static public void emettre(String message) {
         System.out.println("Emission : " + message);
 
         byte buffer[] = message.getBytes();
@@ -46,7 +46,7 @@ public class Emission {
         }
     }
 
-    private void afficherInformationsServeur() {
+    static private void afficherInformationsServeur() {
         System.out.println("Emission informations serveur - adresse : " + adresse + " - port : " + port);
     }
 }

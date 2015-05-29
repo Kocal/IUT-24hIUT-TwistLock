@@ -31,44 +31,38 @@ public class Traitement {
                 // if (MAP)
                 // Appeller la fonction d'initialisation de la map
                 break;
-               
+
             case "10":
                 // "A vous de jouer"
                 // On joue le meilleur coup
                 break;
-                
+
             case "20":
                     // "Coup adversaire"
-                    //Mettre à jour la grille
-                    break;
+                //Mettre à jour la grille
+                break;
             case "21":
-                
+
                 //"coup joué illégal"
                 // perte twist lock courant
                 // perte twist lock pénalité
-                
                 break;
-                
-                
+
             case "22":
-                
+
                 //"coup adversaire illégal"
                 // bah...
-                
                 break;
-                
+
             case "50":
-                
+
                 // "partie terminé"
-                
-                //coupé connexion 
-                
+                //coupé connexion
                 break;
-                
+
             case "91":
-                
+
                 //non valide
-                
                 break;
 
             default:

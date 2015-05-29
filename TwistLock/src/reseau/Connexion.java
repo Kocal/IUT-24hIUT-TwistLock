@@ -35,11 +35,11 @@ public class Connexion {
             System.out.println("Connexion réussie.");
 
             DatagramSocket socket = new DatagramSocket();
+            Emission emission = new Emission(socket, serveur, Integer.parseInt(numeroPort));
 
             Thread threadReception = new Thread(new Reception(socket, Integer.parseInt(numeroPort)));
             threadReception.start();
 
-            Emission emission = new Emission(socket, serveur, Integer.parseInt(numeroPort));
             emission.emettre("Chicken Brothers");
 
             //172.30.7.16:9877

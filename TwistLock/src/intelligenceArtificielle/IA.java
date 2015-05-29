@@ -18,14 +18,16 @@ import twistlock.Constante.Couleur;
  */
 public class IA {
 
-    public Tablier t;
+
+    private Tablier t;
 
     public Couleur col;
 
     public int pointA, pointD;
-    public int l, h, c;
+    public Coordonee c, cA, cD;
+    /*public int l, h, c;
     public int lA, hA, cA;
-    public int lD, hD, cD;
+    public int lD, hD, cD;*/
     /*
      10- ah vous de jouer (Vert)
      20: coup adversaire: 9B1
@@ -51,28 +53,29 @@ public class IA {
 
     public void meilleurMethode() {
         ///
-
-        methodeAttaque();
-        MethodeDefense();
+        
+       cA = methodeAttaque();
+       cD = MethodeDefense();
 
         if (pointA > pointD) {
-            l = lA;
-            h = hA;
             c = cA;
         } else {
-            l = lD;
-            h = hD;
             c = cD;
         }
 
     }
 
-    public void methodeAttaque() {
+    public Coordonee methodeAttaque() {
 
         //penser modiffier PointA
+        Point p = getMeilleurCoin();
+        return new Coordonee(0,0,0);
+        
     }
 
-    public void MethodeDefense() {
+    public Coordonee MethodeDefense() {
+        
+        return new Coordonee(0,0,0);
 
         //penser modiffier PointD
     }
@@ -260,5 +263,18 @@ public class IA {
             }
         }
         return p;
+    }
+    
+    private class Coordonee{
+        
+        public int h, l, c;
+
+        public Coordonee(int h, int l, int c) {
+            this.h = h;
+            this.l = l;
+            this.c = c;
+        }
+        
+        
     }
 }

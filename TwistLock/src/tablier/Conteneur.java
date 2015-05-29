@@ -1,5 +1,7 @@
 package tablier;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Kocal
@@ -9,11 +11,14 @@ public class Conteneur {
     public int ligne;
     public int colonne;
     public int valeur;
+    
+    private ArrayList<Coin> coins;
 
     public Conteneur(int ligne, int colonne, int valeur) {
         this.ligne = ligne;
         this.colonne = colonne;
         this.valeur = valeur;
+        this.coins = new ArrayList<>(4);
     }
 
     public String getColonneAfficher() {
@@ -50,5 +55,40 @@ public class Conteneur {
             throw new Exception("Le coin n'appartient pas au conteneur");
         }
         return numCoin;
+    }
+    
+    /**
+     * Ajoute un Coin au Conteneur
+     * @param coin
+     * @return boolean
+     */
+    public boolean addCoin(Coin coin) {
+        if(this.coins.size() >= 4) {
+            return false;
+        }
+        
+        return this.coins.add(coin);
+    }
+    
+    /**
+     * Retourne le Coin n°"index"
+     * Index(0) => Haut-Gauche
+     * Index(1) => Haut-Droit
+     * Index(2) => Bas-Droit
+     * Index(3) => Bas-Gauche
+     * 
+     * @param index
+     * @return 
+     */
+    public Coin getCoin(int index) {
+        return this.coins.get(index);
+    }
+    
+    /**
+     * Retourne la liste des Coin
+     * @return 
+     */
+    public ArrayList<Coin> getCoins() {
+        return this.coins;
     }
 }

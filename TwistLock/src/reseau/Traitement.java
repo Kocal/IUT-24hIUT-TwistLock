@@ -17,10 +17,12 @@ public class Traitement {
 
         switch (code) {
             case "1-":
+                // "Bonjour équipe 1..."
                 // Appeller fonction qui définie la couleur avec en paramètre ROUGE
                 break;
 
             case "2-":
+                // "Bonjour équipe 2..."
                 // Appeller fonction qui définie la couleur avec en paramètre VERT
                 break;
 
@@ -29,6 +31,33 @@ public class Traitement {
                 // if (MAP)
                 // Appeller la fonction d'initialisation de la map
                 break;
+               
+            case "10-":
+                // "A vous de jouer"
+                // On joue le meilleur coup
+                break;
+                
+            case "20:":
+                    // "Coup adversaire"
+                    //Mettre à jour la grille
+                    break;
+            case "21:":
+                
+                //"coup joué illégal"
+                // perte twist lock courant
+                // perte twist lock pénalité
+                
+                
+            case "22:":
+                
+                //"coup adversaire illégal"
+                // bah...
+                
+            case "50:":
+                
+                // "partie terminé"
+                
+                //coupé connexion 
 
             default:
                 System.out.println("Erreur : code non reconnu [" + code + "]");
